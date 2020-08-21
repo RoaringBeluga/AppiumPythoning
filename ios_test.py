@@ -6,7 +6,7 @@ from appium import webdriver
 import pytest
 
 @pytest.fixture()
-def driver_init():
+def driver(driver):
     caps = {}
     caps["deviceName"] = "iPhone SE (2nd generation)"
     caps["platformName"] = "iOS"
@@ -20,8 +20,8 @@ def driver_init():
 
     driver.quit()
 
-def test_positive_numbers():
-    integer_a = driver.find_element_by_accessibility_id("IntegerA")
+def test_positive_numbers(driver):
+    integer_a = driver().find_element_by_accessibility_id("IntegerA")
     integer_a.click()
     print("Integer A tapped!")
     integer_a.send_keys("4")
