@@ -24,7 +24,7 @@ def driver():
     driver.quit()
 
 def test_positive_numbers(driver):
-    integer_a = driver().find_element_by_accessibility_id("IntegerA")
+    integer_a = driver.find_element_by_accessibility_id("IntegerA")
     integer_a.click()
     print("Integer A tapped!")
     integer_a.send_keys("4")
