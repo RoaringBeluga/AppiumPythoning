@@ -5,15 +5,22 @@
 from appium import webdriver
 import pytest
 
-def test_positive_numbers():
+@pytest.fixture()
+def driver_init():
     caps = {}
     caps["deviceName"] = "iPhone SE (2nd generation)"
     caps["platformName"] = "iOS"
     caps["automationName"] = "XCUITest"
-    caps["app"] = "/Users/desman/Development/Python/Appium/Apps/TestApp.app.zip"
+    caps["app"] = "./Apps/TestApp.app.zip"
 
     driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
     print("Driver!")
+
+    yield driver
+
+    driver.quit()
+
+def test_positive_numbers():
     integer_a = driver.find_element_by_accessibility_id("IntegerA")
     integer_a.click()
     print("Integer A tapped!")
@@ -32,17 +39,10 @@ def test_positive_numbers():
     print("'Answer' element value printed!")
 
     assert int(answer.text) > 0
-    driver.quit()
+
 
 def test_negative_numbers():
-    caps = {}
-    caps["deviceName"] = "iPhone SE (2nd generation)"
-    caps["platformName"] = "iOS"
-    caps["automationName"] = "XCUITest"
-    caps["app"] = "./Apps/TestApp.app.zip"
 
-    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-    print("Driver!")
     integer_a = driver.find_element_by_accessibility_id("IntegerA")
     integer_a.click()
     print("Integer A tapped!")
@@ -60,5 +60,3 @@ def test_negative_numbers():
     print(answer.text)
     assert int(answer.text) < 0
     print("'Answer' element value printed!")
-
-    driver.quit()
