@@ -28,22 +28,35 @@ def test_date_selector(driver):
     driver.find_element_by_accessibility_id("Views").click()
     driver.find_element_by_accessibility_id("Date Widgets").click()
     driver.find_element_by_accessibility_id("1. Dialog").click()
-    driver.find_element_by_accessibility_id("change the time").clkick()
 
-    initial_hours = driver.find_element_by_accessibility_id("android:id/hours").text
-    initial_minutes = driver.find_element_by_accessibility_id("android:id/minutes").text
+    initial_date_display = driver.find_element_by_id("io.appium.android.apis:id/dateDisplay").text.split(" ")
+    initial_time = initial_date_display[1].split(":")
 
-    assert initial_hours == "1"
-    assert initial_minutes == "02"
+    driver.find_element_by_accessibility_id("change the time").click()
+
+    driver.implicitly_wait(5)
+
+    initial_hours = driver.find_element_by_id("android:id/hours").text
+    initial_minutes = driver.find_element_by_id("android:id/minutes").text
+
+    assert int(initial_hours) == int(initial_time[0])
+    assert int(initial_minutes) == int(initial_time[1])
 
     driver.find_element_by_accessibility_id("7").click()
     driver.find_element_by_accessibility_id("40").click()
 
-    new_hours = driver.find_element_by_accessibility_id("android:id/hours").text
-    new_minutes = driver.find_element_by_accessibility_id("android:id/minutes").text
+    new_hours = driver.find_element_by_id("android:id/hours").text
+    new_minutes = driver.find_element_by_id("android:id/minutes").text
 
     assert new_hours == "7"
     assert new_minutes == "40"
 
-    time_header = driver.find_element_by_accessibility_id("android:id/time_header").text
+    time_header = driver.find_element_by_id("android:id/time_header").text
     print(time_header)
+
+    driver.find_element_by_id("android:id/button1").click()
+    result_date_display = driver.find_element_by_id("io.appium.android.apis:id/dateDisplay").text.split(" ")
+    result_time = result_date_display[1].split(":")
+
+    assert int(new_hours) == int(result_time[0])
+    assert int(new_minutes) == int(result_time[1])
