@@ -1,0 +1,12 @@
+{
+  "deviceName": "iPhone SE (2nd generation)",
+  "platformName": "iOS",
+  "automationName": "XCUITest",
+  "app": "/Users/desman/Development/Python/Appium/Apps/TestApp.app.zip"
+}
+
+{
+  "deviceName": "AVD",
+  "platformName": "Android",
+  "automationName": "UiAutomator2"
+}
