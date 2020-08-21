@@ -4,14 +4,17 @@
 
 from appium import webdriver
 import pytest
+import os
 
 @pytest.fixture()
 def driver():
+    appdir = os.getcwd() + "/Apps/TestApp.app.zip"
+    print(appdir)
     caps = {}
     caps["deviceName"] = "iPhone SE (2nd generation)"
     caps["platformName"] = "iOS"
     caps["automationName"] = "XCUITest"
-    caps["app"] = "./Apps/TestApp.app.zip"
+    caps["app"] = appdir
 
     driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
     print("Driver!")
