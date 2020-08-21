@@ -24,7 +24,7 @@ def driver():
     driver.quit()
 
 
-def date_selector_test(driver):
+def test_date_selector(driver):
     driver.find_element_by_accesibility_id("Views").click()
     driver.find_element_by_accesibility_id("Date Widgets").click()
     driver.find_element_by_accesibility_id("1. Dialog").click()
