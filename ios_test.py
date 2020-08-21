@@ -6,7 +6,7 @@ from appium import webdriver
 import pytest
 
 @pytest.fixture()
-def driver(driver):
+def driver():
     caps = {}
     caps["deviceName"] = "iPhone SE (2nd generation)"
     caps["platformName"] = "iOS"
@@ -41,7 +41,7 @@ def test_positive_numbers(driver):
     assert int(answer.text) > 0
 
 
-def test_negative_numbers():
+def test_negative_numbers(driver):
 
     integer_a = driver.find_element_by_accessibility_id("IntegerA")
     integer_a.click()
