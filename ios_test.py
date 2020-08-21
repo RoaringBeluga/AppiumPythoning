@@ -6,7 +6,7 @@ from appium import webdriver
 import pytest
 
 @pytest.fixture()
-def driver_init():
+def driver():
     caps = {}
     caps["deviceName"] = "iPhone SE (2nd generation)"
     caps["platformName"] = "iOS"
