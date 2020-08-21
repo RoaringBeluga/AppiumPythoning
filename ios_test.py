@@ -9,7 +9,7 @@ caps = {}
 caps["deviceName"] = "iPhone SE (2nd generation)"
 caps["platformName"] = "iOS"
 caps["automationName"] = "XCUITest"
-caps["app"] = "/Users/desman/Development/Python/Appium/Apps/TestApp.app.zip"
+caps["app"] = "./Apps/TestApp.app.zip"
 
 driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
 print("Driver!")

@@ -4,10 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+Appium-Python-Client = "1.0.2"
+pytest="6.8.1"
 
 [packages]
 Appium-Python-Client = "*"
-pytest = ""
+pytest="6.8.1"
 
 
 [requires]
