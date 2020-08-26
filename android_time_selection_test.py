@@ -10,8 +10,11 @@ import os
 
 @pytest.fixture()
 def driver():
-    test_app_name = "Apps/ApiDemos-debug.apk"  # App name for testing
-    appdir = os.getcwd() + "/" + test_app_name  # Construct the path to the app...
+    """
+    Returns WebDriver instance with required capabilities.
+    """
+    test_app_name = "Apps/ApiDemos-debug.apk" # App name for testing
+    appdir = os.getcwd() + "/" + test_app_name
     print("Testing app: ", appdir)
     # Set device capabilities
     caps = {
