@@ -8,6 +8,10 @@ import os
 
 @pytest.fixture()
 def driver():
+    """
+    Create WebDriver instance with required capabilities
+    Returns: WebDriver object
+    """
     appdir = os.getcwd() + "/Apps/TestApp.app.zip"
     print(appdir)
     caps = {}
