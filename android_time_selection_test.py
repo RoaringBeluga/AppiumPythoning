@@ -8,6 +8,9 @@ import os
 
 @pytest.fixture()
 def driver():
+    """
+    Returns WebDriver instance with required capabilities.
+    """
     test_app_name = "Apps/ApiDemos-debug.apk" # App name for testing
     appdir = os.getcwd() + "/" + test_app_name
     print("Testing app: ", appdir)

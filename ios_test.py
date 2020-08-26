@@ -7,6 +7,9 @@ import xml.dom.minidom
 
 @pytest.fixture()
 def driver():
+    """
+    Returns WebDriver instance with required capabilities.
+    """
     test_app_name = "Apps/TestApp.app.zip" # App name for testing
     appdir = os.getcwd() + "/" + test_app_name
     print("\nTesting app: ", appdir)
