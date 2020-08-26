@@ -13,12 +13,14 @@ def driver():
     print("Testing app: ", appdir)
 
     caps = {
-        "deviceName" : "Pixel_3a_API_29",
+        #"deviceName" : "Pixel_3a_API_29",
+        "deviceName": "ASUS ZenPhone",
+        "udid": "JBAXB765F0793AA",
         "platformName" : "Android",
         "automationName" : "UiAutomator2",
         "newCommandTimeout": 360,
         "app" : appdir, # Find test app in the Apps directory next to our tests
-        "avd" : "Pixel_3a_API_29" # run the AVD with this name.
+        #"avd" : "Pixel_3a_API_29" # run the AVD with this name.
     }
     print("Capabilities: ", caps)
     # TODO: Check timeout settings for emulator/simulator startup

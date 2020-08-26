@@ -1,7 +1,9 @@
+import pdb
 from appium import webdriver
 import pytest
 import os
 import xml.dom.minidom
+
 
 @pytest.fixture()
 def driver():
@@ -19,10 +21,9 @@ def driver():
     print("Capabilities: ", caps)
     driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
     print("Driver initialized")
-
     yield driver
-
     driver.quit()
+    print("Driver killed.")
 
 
 def xml_pretty(xml_string):
@@ -79,8 +80,10 @@ def test_negative_numbers(driver):
 
 
 def test_alert_elements(driver):
+    print("Now testing that alert...")
     print("Pretty source:")
     print(xml_pretty(driver.page_source))
+    pdb.set_trace("Pogo?")
     print("Enumerating buttons:")
     for el in driver.find_elements_by_class_name("XCUIElementTypeButton"):
         print("\tButton: ", el.text, " [", el.get_attribute("name"), "]")
