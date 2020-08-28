@@ -1,32 +1,5 @@
 import pdb
-from appium import webdriver
-import pytest
-import os
-import xml.dom.minidom
-
-
-@pytest.fixture()
-def driver():
-    """
-    Returns WebDriver instance with required capabilities.
-    """
-    test_app_name = "Apps/TestApp.app.zip" # App name for testing
-    appdir = os.getcwd() + "/" + test_app_name
-    print("\nTesting app: ", appdir)
-
-    caps = {
-        "deviceName": "iPhone SE (2nd generation)",
-        "platformName": "iOS",
-        "automationName": "XCUITest",
-        "newCommandTimeout": 360,
-        "app": appdir
-    }
-    print("Capabilities: ", caps)
-    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-    print("Driver initialized")
-    yield driver
-    driver.quit()
-    print("Driver killed.")
+# import xml.dom.minidom
 
 
 def xml_pretty(xml_string):
@@ -35,7 +8,7 @@ def xml_pretty(xml_string):
     :param xml_string:  XML string with no pretty-printing
     :return: Formatted XML
     """
-    return xml_string #xml.dom.minidom.parseString(xml_string).toprettyxml()
+    return xml_string  # xml.dom.minidom.parseString(xml_string).toprettyxml()
 
 
 def test_positive_numbers(driver):
@@ -86,7 +59,7 @@ def test_alert_elements(driver):
     print("Now testing that alert...")
     print("Pretty source:")
     print(xml_pretty(driver.page_source))
-    pdb.set_trace("Pogo?")
+    pdb.set_trace()
     print("Enumerating buttons:")
     for el in driver.find_elements_by_class_name("XCUIElementTypeButton"):
         print("\tButton: ", el.text, " [", el.get_attribute("name"), "]")
@@ -108,7 +81,7 @@ def test_alert_elements(driver):
     print("Cancel pressed!")
 
 
-def test_alert_elements(driver):
+def test_alert_elements_two(driver):
     driver.find_element_by_accessibility_id("show alert").click()
 
     assert driver.find_element_by_accessibility_id("this alert is so cool.").text == "this alert is so cool."

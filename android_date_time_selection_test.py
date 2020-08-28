@@ -5,36 +5,6 @@ import pytest
 import os
 
 
-@pytest.fixture()
-def driver():
-    """
-    Returns WebDriver instance with required capabilities.
-    """
-    test_app_name = "Apps/ApiDemos-debug.apk" # App name for testing
-    appdir = os.getcwd() + "/" + test_app_name
-    print("Testing app: ", appdir)
-    # Set device capabilities
-    caps = {
-        "deviceName" : "Pixel_3a_API_29",  # Device name of the emulator
-        # "deviceName": "ASUS ZenPhone",  # Name of the physical device
-        # "udid": "JBAXB765F0793AA",  # udid of the physical device
-        "platformName": "Android",
-        "automationName": "UiAutomator2",
-        "newCommandTimeout": 360,
-        "androidDeviceReadyTimeout": 360,  # Waiting for the device to become available – AVD startup times are slooow
-        "app": appdir,  # Find test app in the Apps directory next to our tests
-        "avd" : "Pixel_3a_API_29" # run the AVD with this name.
-    }
-    print("Capabilities: ", caps)
-    # Initialize the driver
-    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-    print("Driver initialized.")
-    # ... and here we go!
-    yield driver
-    # Clean up after use
-    driver.quit()
-
-
 def test_time_selector(driver):
     # Getting to the dialog...
     driver.find_element_by_accessibility_id("Views").click()
