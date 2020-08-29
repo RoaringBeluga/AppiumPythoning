@@ -1,5 +1,6 @@
 import pdb
 # import xml.dom.minidom
+import pytest
 
 
 def xml_pretty(xml_string):
@@ -10,7 +11,7 @@ def xml_pretty(xml_string):
     """
     return xml_string  # xml.dom.minidom.parseString(xml_string).toprettyxml()
 
-
+@pytest.mark.numbers
 def test_positive_numbers(driver):
     integer_a = driver.find_element_by_accessibility_id("IntegerA")
     integer_a.click()
@@ -33,7 +34,7 @@ def test_positive_numbers(driver):
 
     assert int(answer.text) > 0
 
-
+@pytest.mark.numbers
 def test_negative_numbers(driver):
 
     integer_a = driver.find_element_by_accessibility_id("IntegerA")
@@ -54,38 +55,22 @@ def test_negative_numbers(driver):
     assert int(answer.text) < 0
     print("'Answer' element value printed!")
 
-
-def test_alert_elements(driver):
-    print("Now testing that alert...")
-    print("Pretty source:")
-    print(xml_pretty(driver.page_source))
-    pdb.set_trace()
-    print("Enumerating buttons:")
-    for el in driver.find_elements_by_class_name("XCUIElementTypeButton"):
-        print("\tButton: ", el.text, " [", el.get_attribute("name"), "]")
-
+@pytest.mark.alerts
+def test_alert_elements_cancel(driver):
+    pytest.set_trace()
     driver.find_element_by_accessibility_id("show alert").click()
-    print("Alerted!")
-
     assert driver.find_element_by_accessibility_id("this alert is so cool.").text == "this alert is so cool."
-    print("Alert present!")
-    print("Buttons present:")
-    for el in driver.find_elements_by_class_name("XCUIElementTypeButton"):
-        print("\tButton: ", el.text, " [", el.get_attribute("name"), "]")
     assert driver.find_element_by_accessibility_id("Cancel").text == "Cancel"
-    print("Cancel present!")
     assert driver.find_element_by_accessibility_id("OK").text == "OK"
-    print("OK present!")
-
     driver.find_element_by_accessibility_id("Cancel").click()
     print("Cancel pressed!")
+    assert driver.find_element_by_accessibility_id("Cancel").is_displayed() == False
 
 
-def test_alert_elements_two(driver):
+@pytest.mark.alerts
+def test_alert_elements_ok(driver):
     driver.find_element_by_accessibility_id("show alert").click()
-
     assert driver.find_element_by_accessibility_id("this alert is so cool.").text == "this alert is so cool."
     assert driver.find_element_by_accessibility_id("Cancel").text == "Cancel"
     assert driver.find_element_by_accessibility_id("OK").text == "OK"
-
     driver.find_element_by_accessibility_id("Cancel").click()
