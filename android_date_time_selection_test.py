@@ -1,10 +1,3 @@
-import pdb
-
-from appium import webdriver
-import pytest
-import os
-
-
 def test_time_selector(driver):
     # Getting to the dialog...
     driver.find_element_by_accessibility_id("Views").click()

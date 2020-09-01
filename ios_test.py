@@ -1,4 +1,4 @@
-import pdb
+# import pdb
 # import xml.dom.minidom
 import pytest
 
@@ -10,6 +10,7 @@ def xml_pretty(xml_string):
     :return: Formatted XML
     """
     return xml_string  # xml.dom.minidom.parseString(xml_string).toprettyxml()
+
 
 @pytest.mark.numbers
 def test_positive_numbers(driver):
@@ -34,6 +35,7 @@ def test_positive_numbers(driver):
 
     assert int(answer.text) > 0
 
+
 @pytest.mark.numbers
 def test_negative_numbers(driver):
 
@@ -55,6 +57,7 @@ def test_negative_numbers(driver):
     assert int(answer.text) < 0
     print("'Answer' element value printed!")
 
+
 @pytest.mark.alerts
 def test_alert_elements_cancel(driver):
     pytest.set_trace()
@@ -64,7 +67,7 @@ def test_alert_elements_cancel(driver):
     assert driver.find_element_by_accessibility_id("OK").text == "OK"
     driver.find_element_by_accessibility_id("Cancel").click()
     print("Cancel pressed!")
-    assert driver.find_element_by_accessibility_id("Cancel").is_displayed() == False
+    assert not driver.find_element_by_accessibility_id("Cancel").is_displayed()
 
 
 @pytest.mark.alerts
