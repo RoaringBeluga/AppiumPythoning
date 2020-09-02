@@ -5,19 +5,6 @@ import pytest
 import os
 
 
-failed_test_count = 0
-
-
-def failed_tests():
-    global failed_test_count
-    return failed_test_count
-
-
-def increase_failures():
-    global failed_test_count
-    failed_test_count+=1
-
-
 appsdir = os.getcwd() + "/Apps/"
 screenshot_dir = os.getcwd() + "/Screenshots/"
 
@@ -52,7 +39,6 @@ def device_name(request):
 
 @pytest.fixture()
 def driver(platform, device_name, app, request):
-    global failed_test_count
     """
     Returns WebDriver instance with required capabilities.
     """
@@ -77,6 +63,7 @@ def driver(platform, device_name, app, request):
     print("Capabilities: ", caps)
     driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
     print("Driver initialized")
+    failed_test_count = request.session.testsfailed
     yield driver
     # pytest.set_trace()
     if request.session.testsfailed > failed_test_count:
