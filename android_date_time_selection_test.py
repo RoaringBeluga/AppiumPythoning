@@ -1,3 +1,6 @@
+@pytest.mark.android
+@pytest.mark.time_test
+@pytest.mark.interface
 def test_time_selector(driver):
     # Getting to the dialog...
     driver.find_element_by_accessibility_id("Views").click()
@@ -35,6 +38,9 @@ def test_time_selector(driver):
     assert int(new_minutes) == int(result_time[1])  # Minutes set correctly?
 
 
+@pytest.mark.android
+@pytest.mark.date_test
+@pytest.mark.interface
 def test_date_selector(driver):
     # Getting to the dialog...
     # pdb.set_trace()
