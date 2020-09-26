@@ -50,7 +50,6 @@ def driver(platform, device_name, app, request):
         caps["automationName"] = "XCUITest"
         caps["app"] = appsdir + app
     elif platform == "android":
-        # caps["deviceName"] = "Pixel_3a_API_29"
         # "deviceName": "ASUS ZenPhone",  # Name of the physical device
         # "udid": "JBAXB765F0793AA",  # udid of the physical device
         # caps["platformName"] = "Android"
