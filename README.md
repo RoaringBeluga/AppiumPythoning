@@ -18,8 +18,11 @@
 
 * Appium is installed with the relevant drivers
 * Applications packages are built already
+* Android emulator is already running due to timeout issues otherwise (changing timeouts when building the driver was
+  inconclusive).
 
-## Configuration
+## Configuration file explanation
+
 ```yaml
 ios: # Configuration for iOS simulator
   # Device UUID for the simulator
